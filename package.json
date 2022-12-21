@@ -9,6 +9,7 @@
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx",
     "prettier": "prettier --write .",
     "prepare": "husky install",
+    "test": "npm run lint -- --fix",
     "build:dev": "vite build --mode development",
     "build:pro": "vite build --mode production"
   },
