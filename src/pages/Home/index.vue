@@ -1,18 +1,6 @@
 <template>
-  <n-config-provider class="test">
-    <n-button @click="goLogin">登录</n-button>
-  </n-config-provider>
+  <div>主页</div>
 </template>
-<script setup lang="ts">
-import { useRouter } from 'vue-router';
-const router = useRouter();
-const goLogin = () => {
-  router.replace({ name: 'Login' });
-};
-</script>
+<script setup lang="ts"></script>
 
-<style lang="scss" scoped>
-.test {
-  color: $text-color;
-}
-</style>
+<style lang="scss" scoped></style>
