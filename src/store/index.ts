@@ -1,19 +1,5 @@
-import { defineStore } from 'pinia';
+import { createPinia } from 'pinia';
 
-export const useMainStore = defineStore({
-  id: 'mian',
-  state: () => ({
-    name: '超级管理员'
-  }),
-  // getters
-  getters: {
-    nameLength: (state) => state.name.length
-  },
-  actions: {
-    async insertPost(data: string) {
-      // 可以做异步
-      // await doAjaxRequest(data);
-      this.name = data;
-    }
-  }
-});
+const store = createPinia();
+
+export default store;

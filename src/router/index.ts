@@ -1,18 +1,28 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router';
+import Layout from '@/Layout/index.vue';
+import Home from '@/pages/Home/index.vue';
+
+const Login = () => import('@/pages/Login/index.vue');
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Login',
-    component: () => import('@/pages/Login/index.vue')
+    name: 'Home',
+    component: Layout,
+    children: [{ path: '', component: Home }]
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/pages/Home/index.vue') // 注意这里要带上 文件后缀.vue
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: (to) => {
+      return { path: '/' };
+    }
   }
 ];
-const router = createRouter({
-  history: createWebHistory(),
+export default createRouter({
+  history: createWebHashHistory(),
   routes
 });
-export default router;

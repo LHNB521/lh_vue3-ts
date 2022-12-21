@@ -4,19 +4,18 @@
       <n-spin :show="show">
         <n-layout-header>后台管理系统</n-layout-header>
         <n-layout-content>
-          <n-form ref="formRef" :model="model" :rules="rules">
+          <n-form ref="formRef" :model="from" :rules="rules">
             <n-form-item path="username" label="账号">
-              <n-input v-model:value="model.username" @keydown.enter.prevent />
+              <n-input v-model:value="from.username" @keydown.enter.prevent />
             </n-form-item>
             <n-form-item path="password" label="密码">
-              <n-input v-model:value="model.password" type="password" @keydown.enter.prevent />
+              <n-input v-model:value="from.password" type="password" @keydown.enter.prevent />
             </n-form-item>
             <div style="display: flex; justify-content: flex-end">
               <n-button round type="primary" @click="handleLoginClick"> 登录 </n-button>
             </div>
           </n-form>
         </n-layout-content>
-        <n-layout-footer> 底部 </n-layout-footer>
         <template #description> 登录中。。。 </template>
       </n-spin>
     </n-layout>
@@ -24,23 +23,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { FormInst, FormRules, useMessage } from 'naive-ui';
-import loginApi from '@/service/api/login/login';
-
+import { useTokenStore } from '@/store/model/token';
+import { useRouter } from 'vue-router';
 interface ModelType {
   password: string | null;
   username: string | null;
 }
 
-export default defineComponent({
+export default {
+  name: 'Login',
   setup() {
     const formRef = ref<FormInst | null>(null);
     const message = useMessage();
     const show = ref(false);
-    const modelRef = ref<ModelType>({
-      username: null,
-      password: null
+    const tokenStore = useTokenStore();
+    const router = useRouter();
+    const from = reactive<ModelType>({
+      username: '',
+      password: ''
     });
 
     const rules: FormRules = {
@@ -58,38 +60,37 @@ export default defineComponent({
       ]
     };
     // 点击登录
-    const handleLoginClick = (e: MouseEvent) => {
-      e.preventDefault();
-      formRef.value?.validate((errors) => {
-        if (!errors) {
-          message.success('输出正确，正在登录。。。');
-          show.value = !show.value;
-          console.log(modelRef.value.password);
-          const params = {
-            username: modelRef.value.username,
-            password: modelRef.value.password
-          };
-          handleLogin(params);
+    const handleLoginClick = () => {
+      show.value = true;
+      formRef.value?.validate(async (valid) => {
+        if (!valid) {
+          await tokenStore.login(from).then((res) => {
+            if (res) {
+              message.success('登陆成功');
+              router.push({
+                path: '/'
+              });
+            } else {
+              message.error('登录失败');
+            }
+          });
+          show.value = false;
         } else {
           show.value = false;
-          const msg = errors[0][0].message;
+          const msg = valid[0][0].message;
           message.error(`${msg}`);
         }
       });
     };
-    const handleLogin = async (params: any) => {
-      const res = await loginApi.login(params);
-      console.log(res);
-    };
     return {
       formRef,
-      model: modelRef,
+      from,
       rules,
       show,
       handleLoginClick
     };
   }
-});
+};
 </script>
 
 <style scoped>
