@@ -6,7 +6,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   setup() {
     return {
-      text: '5'
+      text: '# 主页'
     };
   }
 });
