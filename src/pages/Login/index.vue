@@ -9,10 +9,16 @@
               <n-input v-model:value="from.username" @keydown.enter.prevent />
             </n-form-item>
             <n-form-item path="password" label="密码">
-              <n-input v-model:value="from.password" type="password" @keydown.enter.prevent />
+              <n-input
+                v-model:value="from.password"
+                type="password"
+                @keydown.enter.prevent
+              />
             </n-form-item>
             <div style="display: flex; justify-content: flex-end">
-              <n-button round type="primary" @click="handleLoginClick"> 登录 </n-button>
+              <n-button round type="primary" @click="handleLoginClick">
+                登录
+              </n-button>
             </div>
           </n-form>
         </n-layout-content>

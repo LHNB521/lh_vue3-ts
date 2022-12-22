@@ -11,7 +11,10 @@
 </template>
 <script lang="ts">
 import type { MenuOption } from 'naive-ui';
-import { LaptopOutline as WorkIcon, HomeOutline as HomeIcon } from '@vicons/ionicons5';
+import {
+  LaptopOutline as WorkIcon,
+  HomeOutline as HomeIcon
+} from '@vicons/ionicons5';
 import { RouterLink } from 'vue-router';
 import { NIcon } from 'naive-ui';
 import { defineComponent, h, Component } from 'vue';

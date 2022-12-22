@@ -6,7 +6,11 @@
   </n-config-provider>
 </template>
 <script lang="ts">
-import { NMessageProvider, NConfigProvider, GlobalThemeOverrides } from 'naive-ui';
+import {
+  NMessageProvider,
+  NConfigProvider,
+  GlobalThemeOverrides
+} from 'naive-ui';
 const themeOverrides: GlobalThemeOverrides = {
   // common: {
   //   primaryColor: '#FF0000'
