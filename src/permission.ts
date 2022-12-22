@@ -8,7 +8,6 @@ router.beforeEach((to, from, next) => {
     }
     next();
   } else {
-    console.log('-6-');
     if (to.name === 'Login') {
       next();
     }

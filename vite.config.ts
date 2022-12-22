@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import viteCompression from 'vite-plugin-compression';
-
 export default defineConfig({
   base: './', //打包路径
   plugins: [
@@ -32,7 +31,7 @@ export default defineConfig({
   server: {
     host: '127.0.0.1',
     port: 3000,
-    open: true,
+    open: false,
     https: false,
     proxy: {},
     hmr: true //热更新

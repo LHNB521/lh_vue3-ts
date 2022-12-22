@@ -1,7 +1,7 @@
 import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router';
 import Layout from '@/Layout/index.vue';
 import Home from '@/pages/Home/index.vue';
-import Import from '@/pages/Import/index.vue';
+import Write from '@/pages/Write/index.vue';
 const Login = () => import('@/pages/Login/index.vue');
 const routes: RouteRecordRaw[] = [
   {
@@ -11,10 +11,10 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', name: 'Home', component: Home }]
   },
   {
-    path: '/import',
-    name: 'Import',
+    path: '/write',
+    name: 'Write',
     component: Layout,
-    children: [{ path: '', name: 'Import', component: Import }]
+    children: [{ path: '', name: 'Write', component: Write }]
   },
   {
     path: '/login',

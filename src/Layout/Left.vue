@@ -40,12 +40,12 @@ const menu: MenuOption[] = [
         RouterLink,
         {
           to: {
-            path: '/import'
+            path: '/write'
           }
         },
-        { default: () => '导入' }
+        { default: () => '撰写' }
       ),
-    key: 'import',
+    key: 'write',
     icon: renderIcon(WorkIcon)
   }
 ];
@@ -58,6 +58,10 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss">
+.left {
+  position: fixed;
+  min-width: 272px;
+}
 .logo {
   font-size: 20px;
   text-align: center;
