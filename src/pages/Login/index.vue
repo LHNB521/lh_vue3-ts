@@ -47,8 +47,8 @@ export default {
     const tokenStore = useTokenStore();
     const router = useRouter();
     const from = reactive<ModelType>({
-      username: '',
-      password: ''
+      username: '123',
+      password: '123'
     });
 
     const rules: FormRules = {
