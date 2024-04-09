@@ -32,7 +32,7 @@ export default defineConfig({
   // 启动服务配置
   server: {
     host: '127.0.0.1',
-    port: 3000,
+    port: 8888,
     open: false,
     https: false,
     proxy: {},
